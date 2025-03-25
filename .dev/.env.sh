@@ -1,1 +1,1 @@
-export GITHUB_TOKEN="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"
+export GITHUB_TOKEN="abcd"
