@@ -1,8 +1,10 @@
 import os
 from github import Github 
 import logging
-github_token = os.getenv("GITHUB_TOKEN")
+from explanations import analyze_files
 
+github_token = os.getenv("GITHUB_TOKEN")
+IGNORE_FILES = ['readme.md']
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -22,15 +24,16 @@ def get_files(repo,path=""):
     contents = repo.get_contents(path)
     files_with_data = []
     for content in contents:
-        if content.type == "dir":
+        file_name = content.name
+        file_type = content.type
+        if file_type == "dir":
             files_with_data.extend(get_files(repo,content.path))
         else:
-            file_data = get_file_data(repo, content.path)
-            file_name = content.name
-            print("file--", content.name)
-            if file_data:
-                files_with_data.append((file_name, file_data))
-    return files_with_data
+            if file_name.lower() not in IGNORE_FILES:
+                file_data = get_file_data(repo, content.path)
+                if file_data:
+                    files_with_data = (file_name,file_data)
+                    analyze_files(file_name, file_data)
 
 def fetch_repo_content(url):
     g = Github(github_token)
