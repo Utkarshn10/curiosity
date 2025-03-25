@@ -10,7 +10,7 @@ def main():
     """
     print("Application started")
     url = "Utkarshn10/diffy"
-    files_with_data = fetch_repo_content(url)
+    fetch_repo_content(url)
     
 if __name__ == "__main__":
     main() 

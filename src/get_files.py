@@ -5,6 +5,8 @@ from explanations import analyze_files
 
 github_token = os.getenv("GITHUB_TOKEN")
 IGNORE_FILES = ['readme.md']
+cores = 2
+
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -32,12 +34,15 @@ def get_files(repo,path=""):
             if file_name.lower() not in IGNORE_FILES:
                 file_data = get_file_data(repo, content.path)
                 if file_data:
-                    files_with_data = (file_name,file_data)
-                    analyze_files(file_name, file_data)
+                    files_with_data.append((file_name,file_data))
+                    if len(files_with_data) >= cores:
+                        from concurrent.futures import ThreadPoolExecutor
+                        with ThreadPoolExecutor() as executor:
+                            executor.map(analyze_files, [file[0] for file in files_with_data], [file[1] for file in files_with_data])
+                        files_with_data = []
 
 def fetch_repo_content(url):
     g = Github(github_token)
     repo = g.get_repo(url)
-    files = get_files(repo)
+    get_files(repo)
     g.close()
-    return files
