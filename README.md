@@ -2,7 +2,7 @@
 
 ## Overview
 
-The GitHub Repository Content Fetcher is a Python application that allows users to fetch and analyze the content of files from a specified GitHub repository. It utilizes the GitHub API to retrieve file data and provides a summary of the contents using an external analysis service.
+Curiosity is a Python application that gives summaries of files in a GitHub repository.
 
 ## Features
 
