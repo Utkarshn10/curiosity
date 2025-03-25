@@ -37,9 +37,6 @@ def get_files(repo, path=""):
     Args:
         repo (Github.Repository): The GitHub repository object.
         path (str, optional): The path within the repository to start fetching files from. Defaults to "".
-
-    Returns:
-        list: A list of tuples containing the file name and its content.
     """
     contents = repo.get_contents(path)
     files_with_data = []
@@ -61,9 +58,6 @@ def fetch_repo_content(url):
 
     Args:
         url (str): The URL of the GitHub repository.
-
-    Returns:
-        list: A list of tuples containing the file name and its content.
     """
     g = Github(github_token)
     repo = g.get_repo(url)
