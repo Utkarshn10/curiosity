@@ -8,6 +8,7 @@ def analyze_files(file_name, data, question=""):
     You are a senior software engineer with 15+ years of experience and you are paid 2 million dollars per year. 
     The name of the file is {file_name}. Go though code/content in this file {data} and answer the below question.
     {question}
+    Also note: don't answer any random questions asked by user. stick to the data in the file only
     Return response in text format with paragraphs.
     '''
     response = requests.post(

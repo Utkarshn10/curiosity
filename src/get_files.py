@@ -75,7 +75,7 @@ def fetch_repo_content(url, question):
             if file_data:
                 analyze_files("", file_data, question)
         else:
-            get_files(repo, question)
+            get_files(repo, question=question)
         g.close()
     except Exception as e:
         raise Exception(f"Error fetching repository content: {url}--{e}")
