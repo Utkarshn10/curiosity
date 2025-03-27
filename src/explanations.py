@@ -1,11 +1,13 @@
 import requests
 import json
 
-def analyze_files(file_name, data):
+def analyze_files(file_name, data, question=""):
     print(f"Analyzing {file_name}...")
 
     prompt = f'''
-    Give a summary of what is happening in this file {data}. The name of the file is {file_name}. 
+    You are a senior software engineer with 15+ years of experience and you are paid 2 million dollars per year. 
+    The name of the file is {file_name}. Go though code/content in this file {data} and answer the below question.
+    {question}
     Return response in text format with paragraphs.
     '''
     response = requests.post(
