@@ -2,19 +2,20 @@
 
 ## Overview
 
-Curiosity is a Python application that gives summaries of files in a GitHub repository.
+Curiosity is a Python application that provides in-depth summaries of files in a GitHub repository, utilizing advanced language models for analysis.
 
 ## Features
 
-- Fetches files from a GitHub repository.
-- Analyzes file content and provides summaries.
+- Fetches files from a GitHub repository, including nested directories.
+- Utilizes AI-powered analysis to generate detailed summaries of file content, including code explanations and answers to specific questions.
 
 ## Requirements
 
 - Python 3.x
 - `PyGithub` library for interacting with the GitHub API.
 - A valid GitHub token for authentication.
-- ollama
+- `requests` library for handling HTTP requests.
+- `ollama` for AI-powered analysis and summarization.
 
 ## Installation
 
@@ -28,7 +29,7 @@ Curiosity is a Python application that gives summaries of files in a GitHub repo
 2. Install the required packages:
 
    ```bash
-   pip install PyGithub requests
+   pip install PyGithub requests ollama
    ```
 
 3. Set your GitHub token as an environment variable:
@@ -47,7 +48,9 @@ Curiosity is a Python application that gives summaries of files in a GitHub repo
 
 2. When prompted, enter the GitHub repository URL (e.g., `https://github.com/username/repository`).
 
-3. The application will fetch the content of the repository and analyze the files, providing summaries for each file.
+3. Optionally, specify a question to ask about the repository content (e.g., `ask What is the purpose of the main.py file?`).
+
+4. The application will fetch the content of the repository, analyze the files, and provide detailed summaries for each file, including answers to the specified question.
 
 ## Contributing
 
